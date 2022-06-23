@@ -9,50 +9,50 @@
             You are logged in as {{ app.user.userIdentifier }}, <a href="{{ path('app_logout') }}">Logout</a>
         </div>
     {% endif %}
-
+  
+<nav class="nav flex-column">
+  <a class="nav-link active" href="{{ path('app_register') }}">Add Employee</a>
+  <a class="nav-link active" href="{{ path('app_login') }}">Add Class</a>
+  <a class="nav-link active" href="{{ path('app_login') }}">Add Student</a>
+</nav>
+{% if form is defined %}
+    <div class="container">
+           <div class="row">
+               <div class="col-sm-4">
+                   <h2 class=page-header>Add Employee</h2>
+                       {{form_start(form)}}
+                       {{form_widget(form)}}
+                       {{form_end(form)}}
+               </div>
+           </div>
+    </div>
+    {% endif %}
 <div class="container">
-
-	<br>
-     <select name="role" class="role">
-      <option value="">---Admin/Teacher---</option>
-      <option value="admin">Admin</option>
-      <option value="teacher">Teachers</option>
-      </select>
-
+	<br>  
 <table class="table">
   <thead>
     <tr>
-      <th scope="col">#</th>
-      <th scope="col">Emp Code</th>
-      <th scope="col">Emp Name</th>
+      <th scope="col">S no</th>
+      <th scope="col">EmployeeCode</th>
+      <th scope="col">EmployeeName</th>
       <th scope="col">Role</th>
-      <th scope="col">Edit</th>
-      <th scope="col">Delete</th>
     </tr>
   </thead>
   <tbody>
+  {% for data in data %}
     <tr>
-      <th scope="row">1</th>
-      <td></td>
-      <td></td>
-      <td></td>
+      <th scope="row">{{data.id}}</th>
+      <td>{{data.EmployeeCode}}</td>
+      <td>{{data.EmployeeName}}</td>
+      <td>{{data.Role}}</td>
+      <td>
+          <a class ="btn-btn-warning" href="{{path('update', {'id':data.id})}}">Update</a>
+          <a class ="btn-btn-danger" href="{{path('delete', {'id':data.id})}}">Delete</a>
+      </td>
     </tr>
-    <tr>
-      <th scope="row">2</th>
-      <td></td>
-      <td></td>
-      <td></td>
-    </tr>
-    <tr>
-      <th scope="row">3</th>
-      <td colspan="2"></td>
-      <td></td>
-    </tr>
+    {% endfor %}
   </tbody>
 </table>
-
-
-
 </div>
 
 

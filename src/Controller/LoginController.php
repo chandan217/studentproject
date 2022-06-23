@@ -26,16 +26,6 @@ class LoginController extends AbstractController
         return $this->render('security/login.html.twig', ['last_username' => $lastUsername, 'error' => $error]);
     }
 
-  
-    /**
-     * @Route("/add_employee", name="app_addemployee")
-     */
-
-     public function add_employee()
-     {
-        return $this->render('security/add_employee.html.twig');
-     }
-
        /**
      * @Route("/logout", name="app_logout")
      */
