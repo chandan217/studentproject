@@ -21,7 +21,7 @@ class EmployeeType extends AbstractType
                     'Admin' => 'Admin',
                      'Teacher'  => 'Teacher',   ],
                     ])
-            ->add('AddEmployee', SubmitType::class);
+            ->add('AddEmployee', SubmitType::class,);
     }
 
     public function configureOptions(OptionsResolver $resolver): void

@@ -22,22 +22,16 @@ class AddEmployeeController extends AbstractController
     {
         $em = $this->getDoctrine()->getManager();
         $addemployee= new AddEmployee();
-
         $EmployeeForm = $this->createForm(EmployeeType::class, $addemployee);
         $EmployeeForm->handleRequest($request);
-
         $data=$this->getDoctrine()->getRepository(AddEmployee::class)->findAll();
-
         if($EmployeeForm->isSubmitted() && $EmployeeForm->isValid()){
             $em->persist($addemployee);
             $em->flush();
             return $this->render('security/add_employee.html.twig', ['form'=>$EmployeeForm->createView(), 'data'=> $data]);
         }
-
-        
         return $this->render('security/add_employee.html.twig', ['form'=>$EmployeeForm->createView(), 'data'=> $data]);
     }
-
 /**
      * @Route("/update/{id}", name="update")
      */

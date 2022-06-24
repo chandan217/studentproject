@@ -1,0 +1,29 @@
+{% extends 'base.html.twig' %}
+{% block body %}
+{% if form is defined %}
+    <div class="container">
+           <div class="row">
+               <div class="col-sm-4">
+                   <h2 class=page-header>Update Student</h2>
+                       {{form_start(form)}}
+                       {{form_widget(form)}}
+                       {{form_end(form)}}
+               </div>
+           </div>
+    </div>
+    {% endif %}
+<div class="container">
+	<br>  
+<table class="table">
+  <tbody>
+  {% for data in addstudent %}
+    <tr>
+      <th scope="row">{{data.id}}</th>
+      <td>{{data.AdmissionNumber}}</td>
+      <td>{{data.ChildsName}}</td>
+       </tr>
+    {% endfor %}
+  </tbody>
+</table>
+</div>
+{% endblock %}

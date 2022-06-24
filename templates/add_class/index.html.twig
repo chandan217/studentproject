@@ -1,47 +1,38 @@
 {% extends 'base.html.twig' %}
-{% block title %}Add_Employee
- {% endblock %}
+
+{% block title %}Add Class{% endblock %}
+
 {% block body %}
+
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor" crossorigin="anonymous">
 <form method="post">
-    {% if app.user %}
-        <div class="mb-3">
-            You are logged in as {{ app.user.userIdentifier }}, <a href="{{ path('app_logout') }}">Logout</a>
-        </div>
-    {% endif %}
-    <hr>
 <nav class="nav flex-column">
   <a class="nav-link active" href="{{ path('app_addemployee') }}">Add Employee</a>
   <a class="nav-link active" href="{{ path('app_addclass') }}">Add Class</a>
   <a class="nav-link active" href="{{ path('app_addstudent') }}">Add Student</a>
 </nav>
 <hr>
-<style>
-.container{
-  padding:10px;
-}
-</style>
 {% if form is defined %}
     <div class="container">
            <div class="row">
                <div class="col-sm-4">
-                   <h2 class=page-header>Add Employee</h2>
-                       {{form_start(form)}}
+                   <h2 class=page-header>Class Name</h2>
+                    {{form_start(form)}}
                        {{form_widget(form)}}
                        {{form_end(form)}}
+                       
                </div>
            </div>
     </div>
-    {% endif %}
-<div class="container">
+{% endif %}
+    <div class="container">
 	<br>  
 <table class="table">
   <thead>
     <tr>
-      <th scope="col">S no</th>
-      <th scope="col">EmployeeCode</th>
-      <th scope="col">EmployeeName</th>
-      <th scope="col">Role</th>
+    <th scope="col">S no</th>
+      <th scope="col">Class Name</th>
+      <th scope="col">Student Count</th>
       <th scope="col">Action</th>
     </tr>
   </thead>
@@ -49,18 +40,15 @@
   {% for data in data %}
     <tr>
       <th scope="row">{{data.id}}</th>
-      <td>{{data.EmployeeCode}}</td>
-      <td>{{data.EmployeeName}}</td>
-      <td>{{data.Role}}</td>
+      <td>{{data.Class}}</td>
+      <th scope="row">{{data.id}}</th>
       <td>
-          <a class ="btn-btn-warning" href="{{path('update', {'id':data.id})}}">Update</a>
-          <a class ="btn-btn-danger" href="{{path('delete', {'id':data.id})}}">Delete</a>
+          <a class ="btn-btn-warning" href="{{path('updateclass', {'id':data.id})}}">Update</a>
+          <a class ="btn-btn-danger" href="{{path('deleteclass', {'id':data.id})}}">Delete</a>
       </td>
     </tr>
     {% endfor %}
   </tbody>
 </table>
 </div>
-
-
 {% endblock %}

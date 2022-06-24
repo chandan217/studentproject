@@ -15,17 +15,12 @@ class AddClass
      * @ORM\GeneratedValue
      * @ORM\Column(type="integer")
      */
-    private $id;
-
+     private $id;
     /**
      * @ORM\Column(type="string", length=255)
      */
     private $class;
 
-    public function getId(): ?int
-    {
-        return $this->id;
-    }
 
     public function getClass(): ?string
     {
@@ -38,4 +33,9 @@ class AddClass
 
         return $this;
     }
-}
+    public function getId(): ?int
+    {
+        return $this->id;
+    }
+    
+};
