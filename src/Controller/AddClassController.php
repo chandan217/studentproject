@@ -16,6 +16,20 @@ class AddClassController extends AbstractController
      */
     public function add_class(Request $request)
     {
+        $user = $this->get('security.token_storage')->getToken();
+        //dump($user);
+        //die();
+        if(is_null($user) == 1){
+
+            // get the login error if there is one
+        $error = '';
+        // last username entered by the user
+        $lastUsername = '';
+        return $this->redirect('/');
+        } else {
+            $usercurrent = $this->get('security.token_storage')->getToken()->getUser();
+
+        }
         $em = $this->getDoctrine()->getManager();
         $addclass= new AddClass();
         $ClassForm = $this->createForm(ClassType::class, $addclass);

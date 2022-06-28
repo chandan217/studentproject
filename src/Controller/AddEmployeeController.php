@@ -20,6 +20,19 @@ class AddEmployeeController extends AbstractController
 
     public function add_employee(Request $request)
     {
+        $user = $this->get('security.token_storage')->getToken();
+        //dump($user);
+        //die();
+        if(is_null($user) == 1){
+            // get the login error if there is one
+        $error = '';
+        // last username entered by the user
+        $lastUsername = '';
+        return $this->redirect('/');
+        } else {
+            $usercurrent = $this->get('security.token_storage')->getToken()->getUser();
+        }
+
         $em = $this->getDoctrine()->getManager();
         $addemployee= new AddEmployee();
         $EmployeeForm = $this->createForm(EmployeeType::class, $addemployee);
@@ -35,14 +48,13 @@ class AddEmployeeController extends AbstractController
 /**
      * @Route("/update/{id}", name="update")
      */
+
        public function update(Request $request, $id)
        {
         $em = $this->getDoctrine()->getManager();
         $addemployee= $this->getDoctrine()->getRepository(AddEmployee::class)->find($id);
-
         $EmployeeForm = $this->createForm(EmployeeType::class, $addemployee);
         $EmployeeForm->handleRequest($request);
-
         if($EmployeeForm->isSubmitted() && $EmployeeForm->isValid()){
             $em->persist($addemployee);
             $em->flush();
@@ -50,10 +62,10 @@ class AddEmployeeController extends AbstractController
         }
         return $this->render('security/update.html.twig', ['form'=>$EmployeeForm->createView(),'addemployee'=> $addemployee]);
        }
-
        /**
      * @Route("/delete/{id}", name="delete")
      */
+
         public function delete($id)
         {
            $data= $this->getDoctrine()->getRepository(AddEmployee::class)->find($id);

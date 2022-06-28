@@ -4,11 +4,13 @@ namespace App\Form;
 
 use App\Entity\Adminlogin;
 use Symfony\Component\Form\AbstractType;
+use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 use Symfony\Component\Form\Extension\Core\Type\PasswordType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Component\Validator\Constraints\Length;
 use Symfony\Component\Validator\Constraints\NotBlank;
+use Symfony\Component\Form\CallbackTransformer;
 
 class RegistrationFormType extends AbstractType
 {
@@ -32,8 +34,24 @@ class RegistrationFormType extends AbstractType
                         'max' => 4096,
                     ]),
                 ],
-            ])
+            ]
+            )
+            ->add('roles', ChoiceType::class, [
+                'required' => true,
+                'choices'  => [
+                  'User' => 'ROLE_USER',
+                  'Admin' => 'ROLE_ADMIN',
+                ],
+            ]) 
         ;
+
+        $builder->get('roles')
+        ->addModelTransformer(new CallbackTransformer(
+            fn ($rolesAsArray) => count($rolesAsArray) ? $rolesAsArray[0]: null,
+            fn ($rolesAsString) => [$rolesAsString]
+    ));
+
+
     }
 
     public function configureOptions(OptionsResolver $resolver): void
