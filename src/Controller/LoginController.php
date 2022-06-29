@@ -18,7 +18,13 @@ class LoginController extends AbstractController
     {   
 
          if ($this->getUser()) {
-             return $this->redirectToRoute('app_addemployee');
+            $user = $this->getUser()->getRoles();
+             if($user[0] == 'ROLE_USER'){
+                return $this->redirectToRoute('app_teacher');
+             } else {
+                return $this->redirectToRoute('app_addemployee');
+             }
+             
          }
 
         // get the login error if there is one

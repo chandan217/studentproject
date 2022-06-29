@@ -4,15 +4,43 @@
 {% block body %}
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor" crossorigin="anonymous">
 <form method="post">
-    {% if app.user %}
-        <div class="mb-3">
-            You are logged in as {{ app.user.userIdentifier }}, <a href="{{ path('app_logout') }}">Logout</a>
-        </div>
-    {% endif %}
     <hr>
 <nav class="nav flex-column">
-  <a class="nav-link active" href="{{ path('app_addemployee') }}">Take Attendance</a>
+  <a class="nav-link active" href="{{ path('app_teacher') }}">Take Attendance</a>
   <a class="nav-link active" href="{{ path('app_addclass') }}">Attendance Report</a>
 </nav>
 <hr>
+<style>
+.container{
+  padding:10px;
+}
+</style>
+{% if form is defined %}
+    <div class="container">
+           <div class="row">
+               <div class="col-sm-4">
+                   <h2 class=page-header>Take Attendance</h2>
+                       {{form_start(form)}}
+                       {{form_widget(form)}}
+                       {{form_end(form)}}
+               </div>
+           </div>
+    </div>
+    {% endif %}
+<div class="container">
+	<br>  
+<table class="table">
+  <thead>
+    <tr>
+      <th scope="col">Adm no</th>
+      <th scope="col">Name</th>
+      <th scope="col">Class</th>
+      <th scope="col">Status</th>
+    </tr>
+  </thead>
+  <tbody>
+  
+  </tbody>
+</table>
+</div>
 {% endblock %}
