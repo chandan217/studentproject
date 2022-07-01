@@ -27,6 +27,11 @@ class AddStudent
      */
     private $ChildsName;
 
+    /**
+     * @ORM\Column(type="string", length=255)
+     */
+    private $class;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -52,6 +57,18 @@ class AddStudent
     public function setChildsName(string $ChildsName): self
     {
         $this->ChildsName = $ChildsName;
+
+        return $this;
+    }
+
+    public function getClass(): ?string
+    {
+        return $this->class;
+    }
+
+    public function setClass(string $class): self
+    {
+        $this->class = $class;
 
         return $this;
     }

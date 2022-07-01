@@ -15,8 +15,9 @@ class StudentType extends AbstractType
         $builder
             ->add('AdmissionNumber')
             ->add('ChildsName')
+            ->add('class')
             ->add('AddStudent', SubmitType::class);
-        ;
+        
     }
 
     public function configureOptions(OptionsResolver $resolver): void

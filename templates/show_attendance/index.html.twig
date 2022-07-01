@@ -10,32 +10,18 @@
   <a class="nav-link active" href="{{ path('app_showattendance') }}">Attendance Report</a>
 </nav>
 <hr>
-<center>
-
-    <div class="main">
-<nav aria-label="breadcrumb">
-  <ol class="breadcrumb">
-    <li class="breadcrumb-item active" aria-current="page">Take Attendance</li>
-  </ol>
-</nav>
-<hr>
-<h4>Selection Options:</h4>
-<div class="container1">
-  <select name="class">
-    <option value="">class</option>
-    <option value="">IV</option>
-    <option value="">V</option>
-  </select>
-<input type="date" required="required"/>
-<button class="showlist">Show List</button>
-</div>
-</center>
-<br>
-                     
+{% if form is defined %}
+    <div class="container">
+           <div class="row">
+               <div class="col-sm-4">
+                   <h2 class=page-header>Take Attendance</h2>
+                       {{form_start(form)}}
+                       {{form_widget(form)}}
+                       {{form_end(form)}}
                </div>
            </div>
     </div>
-    
+    {% endif %}
 <div class="container">
 	<br>  
 <table class="table">
@@ -52,45 +38,25 @@
       <th>3056</th>
       <td>Chandan</td>
       <td>V</td>
-      <td>
-       <select>
-            <option value="present">Present</option>
-            <option value="absent">Absent</option>
-      </select>
-      </td>
+      <td>Present</td>
     </tr>
     <tr>
       <th>4056</th>
       <td>Kajal</td>
       <td>VI</td>
-      <td>
-      <select>
-            <option value="present">Present</option>
-            <option value="absent">Absent</option>
-      </select>
-      </td>
+      <td>Absent</td>
     </tr>
     <tr>
       <th>5056</th>
       <td>Vivek</td>
       <td>X</td>
-      <td>
-       <select>
-            <option value="present">Present</option>
-            <option value="absent">Absent</option>
-      </select>
-      </td>
+      <td>Absent</td>
     </tr>
     <tr>
       <th>5156</th>
       <td>Anupam</td>
       <td>VII</td>
-      <td>
-       <select>
-            <option value="present">Present</option>
-            <option value="absent">Absent</option>
-      </select>
-      </td>
+      <td>Present</td>
     </tr>
   </tbody>
 </table>
